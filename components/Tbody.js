@@ -1,6 +1,6 @@
 function Tbody({ year, month }) {
-    console.log('Поступившие в Tbody year, month ', year, month);
-
+    return monthAsTBody(year, month);
+    
     function weekTDArray(monday, daysNumber) {
         const
             result = [];
@@ -33,7 +33,6 @@ function Tbody({ year, month }) {
 
         return <tbody>{...monthTRArray(startShift, daysInMonth)}</tbody>
     }
-    return monthAsTBody(year, month);
 }
 
 export default Tbody

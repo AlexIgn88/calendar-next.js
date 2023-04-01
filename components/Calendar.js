@@ -7,10 +7,6 @@ function Calendar() {
         [inputValue, setInputValue] = useState([today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0')].join('-')),
         [year, month] = inputValue.split('-');
 
-    //console.log('inputValue ', inputValue);
-    //console.log('inputValue.split ', inputValue.split('-'));
-    console.log('В Calendar есть: [year, month] =  ', year, month);
-
     return <div className="calendar">
         <input
             id='month-input'
