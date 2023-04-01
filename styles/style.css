@@ -1,0 +1,11 @@
+table.table-for-calendar {
+    border-collapse: collapse;
+}
+
+.table-for-calendar td {
+    border: 1px solid lightgray;
+}
+
+.table-for-calendar td:nth-child(7n) {
+    color: red
+}
