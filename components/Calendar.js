@@ -1,20 +1,15 @@
 import { useState } from 'react'
+import Tbody from '../components/Tbody'
 
 function Calendar() {
     const
-        today = new Date();
-    //     monthInput = document.getElementById('month-input'),
-    //     table = document.querySelector('table.table-for-calendar'),  
+        today = new Date(),
+        [inputValue, setInputValue] = useState([today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0')].join('-')),
+        [year, month] = inputValue.split('-');
 
-    const
-        [inputValue, setInputValue] = useState([today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0')].join('-'));
-
-    const [year, month] = inputValue.split('-');
-
-
-    console.log('inputValue ', inputValue);
-    console.log('inputValue.split ', inputValue.split('-'));
-    console.log('[year, month] =  ', year, month);
+    //console.log('inputValue ', inputValue);
+    //console.log('inputValue.split ', inputValue.split('-'));
+    console.log('В Calendar есть: [year, month] =  ', year, month);
 
     return <div className="calendar">
         <input
@@ -35,7 +30,7 @@ function Calendar() {
                     <td>Вс</td>
                 </tr>
             </thead>
-            <tbody></tbody>
+            {inputValue && <Tbody year={year} month={month - 1} />}
         </table>
     </div>
 }
