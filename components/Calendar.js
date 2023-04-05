@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Input from '../components/Input'
 import Tbody from '../components/Tbody'
 
 function Calendar() {
@@ -8,11 +9,9 @@ function Calendar() {
         [year, month] = inputValue.split('-');
 
     return <div className="calendar">
-        <input
-            id='month-input'
-            type="month"
-            value={inputValue}
-            onChange={evt => setInputValue(evt.target.value)}
+        <Input 
+        inputValue={inputValue} 
+        setInputValue={setInputValue}
         />
         <table className="table-for-calendar">
             <thead>
