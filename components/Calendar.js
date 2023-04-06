@@ -1,18 +1,27 @@
 import { useState } from 'react'
-import Input from '../components/Input'
+import ModalWindow from '../components/ModalWindow'
 import Tbody from '../components/Tbody'
 
 function Calendar() {
     const
         today = new Date(),
-        [inputValue, setInputValue] = useState([today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0')].join('-')),
-        [year, month] = inputValue.split('-');
+        [showModalWindow, setShowModalWindow] = useState(false),
+        [yearAndMonth, setYearAndMonth] = useState([today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0')].join('-')),
+        [year, month] = yearAndMonth.split('-'),
+
+        date = new Date(yearAndMonth),
+        options = { year: 'numeric', month: 'long' },
+        formattedDate = date.toLocaleString('ru-RU', options)
+            .charAt(0).toUpperCase() + date.toLocaleString('ru-RU', options).slice(1);
 
     return <div className="calendar">
-        <Input 
-        inputValue={inputValue} 
-        setInputValue={setInputValue}
-        />
+        <div suppressHydrationWarning>{formattedDate}</div>
+        <button onClick={() => setShowModalWindow(true)}>Установить дату</button>
+        {showModalWindow && <ModalWindow
+            setShowModalWindow={setShowModalWindow}
+            yearAndMonth={yearAndMonth}
+            setYearAndMonth={setYearAndMonth}
+        />}
         <table className="table-for-calendar">
             <thead>
                 <tr>
@@ -25,7 +34,7 @@ function Calendar() {
                     <td>Вс</td>
                 </tr>
             </thead>
-            {inputValue && <Tbody year={year} month={month - 1} />}
+            {yearAndMonth && <Tbody year={year} month={month - 1} />}
         </table>
     </div>
 }

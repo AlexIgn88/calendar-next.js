@@ -1,13 +1,12 @@
 import { useState } from 'react'
 
-function ModalWindow({ setShowModalWindow, inputValue, setInputValue }) {
-    const [inputYearValue, setinputYearValue] = useState(+inputValue.split('-')[0]);
+function ModalWindow({ setShowModalWindow, yearAndMonth, setYearAndMonth }) {
+    const [inputYearValue, setinputYearValue] = useState(+yearAndMonth.split('-')[0]);
 
     function setData(evt) {
         const td = evt.target.closest('td');
         if (!td) return
-
-        setInputValue(inputYearValue + '-' + evt.target.dataset?.month);
+        setYearAndMonth(inputYearValue + '-' + evt.target.dataset?.month);
         setShowModalWindow(false);
     }
 
