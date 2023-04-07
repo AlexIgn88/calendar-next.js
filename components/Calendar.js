@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ModalWindow from '../components/ModalWindow'
-import TableForCalendar from './TableForCalendar'
+import TableForCalendar from '../components/TableForCalendar'
 
 function Calendar() {
     const
@@ -16,7 +16,8 @@ function Calendar() {
         evt => { if (showModalWindow && !evt.target.closest('.modal-window')) setShowModalWindow(false) }
     }>
         <div>{date}</div>
-        <button onClick={() => setShowModalWindow(true)}>Установить дату</button>
+        <button onClick={() => setShowModalWindow(true)} className='button-for-set-date' >
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Oxygen480-actions-view-calendar.svg/1200px-Oxygen480-actions-view-calendar.svg.png" /></button>
         {showModalWindow && <ModalWindow
             setShowModalWindow={setShowModalWindow}
             date={date}
