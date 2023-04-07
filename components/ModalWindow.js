@@ -41,7 +41,17 @@ function ModalWindow({ setShowModalWindow, date, setDate, TableForCalendar }) {
 
     return <div className="modal-window">
         <div>
-            <div className='closeButton'><button onClick={() => setShowModalWindow(false)}>Close</button></div>
+            <div className='closeButton'>
+                <button onClick={() => {
+                    setDate([
+                        String(new Date().getDate()).padStart(2, '0'),
+                        String(new Date().getMonth() + 1).padStart(2, '0'),
+                        new Date().getFullYear()]
+                        .join('.'));
+                    setShowModalWindow(false);
+                }}>Reset date</button>
+                <button onClick={() => setShowModalWindow(false)}>Close</button>
+            </div>
             <span className='description'>Выберите год: </span>
             <input
                 type='number'
