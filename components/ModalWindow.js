@@ -1,43 +1,60 @@
 import { useState } from 'react'
 
-function ModalWindow({ setShowModalWindow, yearAndMonth, setYearAndMonth }) {
-    const [inputYearValue, setinputYearValue] = useState(+yearAndMonth.split('-')[0]);
+function ModalWindow({ setShowModalWindow, date, setDate, TableForCalendar }) {
+    const
+        [day, month, year] = date.split('.'),
+        [inputYearValue, setinputYearValue] = useState(year);
 
-    function setData(evt) {
+    function getMonth(evt) {
         const td = evt.target.closest('td');
         if (!td) return
-        setYearAndMonth(inputYearValue + '-' + evt.target.dataset?.month);
-        setShowModalWindow(false);
+        setDate(day + '.' + evt.target.dataset?.month + '.' + inputYearValue);
+    }
+
+    function ArrayOfTD(startShift) {
+        const
+            result = [],
+            arrayOfMonths = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+
+        for (let i = 0; i < 4; i++) {
+            let
+                td = <td key={Date.now() + i}></td>,
+                nameOfMonth = arrayOfMonths[i + startShift];
+            td = <td key={Date.now() + i} data-month={'' + 0 + (i + startShift + 1)} >{nameOfMonth}</td>;
+            if (i + startShift + 1 == month) td = <td key={Date.now() + i} data-month={'' + 0 + (i + startShift + 1)} className="current" >{nameOfMonth}</td>;
+            result.push(td);
+        }
+        return result;
+    }
+
+    function ArrayOfTR() {
+        const
+            result = [];
+        for (let i = 0, startShift = 0; i < 3; i++) {
+            const
+                tr = <tr key={Date.now() + i}>{...ArrayOfTD(startShift)}</tr>
+            result.push(tr);
+            startShift += 4;
+        }
+        return result;
     }
 
     return <div className="modal-window">
-        <input
-            type='number'
-            value={inputYearValue}
-            onChange={evt => setinputYearValue(evt.target.value)}
-        />
-        <table>
-            <tbody onClick={evt => setData(evt)}>
-                <tr>
-                    <td data-month='01'>янв</td>
-                    <td data-month='02'>фев</td>
-                    <td data-month='03'>мар</td>
-                    <td data-month='04'>апр</td>
-                </tr>
-                <tr>
-                    <td data-month='05'>май</td>
-                    <td data-month='06'>июн</td>
-                    <td data-month='07'>июл</td>
-                    <td data-month='08'>авг</td>
-                </tr>
-                <tr>
-                    <td data-month='09'>сен</td>
-                    <td data-month='10'>окт</td>
-                    <td data-month='11'>ноя</td>
-                    <td data-month='12'>дек</td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            <div className='closeButton'><button onClick={() => setShowModalWindow(false)}>Close</button></div>
+            <span className='description'>Выберите год: </span>
+            <input
+                type='number'
+                value={inputYearValue}
+                onChange={
+                    evt => {
+                        setinputYearValue(evt.target.value);
+                        setDate(date.split('.')[0] + '.' + date.split('.')[1] + '.' + inputYearValue);
+                    }}
+            />
+        </div>
+        <table><tbody onClick={evt => getMonth(evt)}>{...ArrayOfTR()}</tbody></table>
+        {TableForCalendar}
     </div>
 }
 

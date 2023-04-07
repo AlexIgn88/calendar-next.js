@@ -1,3 +1,9 @@
+.calendar {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
 .calendar,
 input#month-input,
 .modal-window {
@@ -28,8 +34,43 @@ table.table-for-calendar,
     color: red
 }
 
+.current {
+    background-color: rgb(131, 38, 4);
+}
+
+.modal-window tbody td:hover {
+    background-color: rgb(131, 38, 4);
+}
+
+.modal-window tbody td:active {
+    background-color: rgb(67, 19, 1);
+}
+
 .modal-window {
     position: absolute;
+    top: 65px;
     border: 1px solid black;
     background-color: coral;
+}
+
+.closeButton {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: 2px;
+    left: 65px;
+}
+
+.closeButton button:hover {
+    color: white;
+    background-color: rgb(131, 38, 4);
+}
+
+.closeButton button:active {
+    color: white;
+    background-color: rgb(67, 19, 1);
+}
+
+.description {
+    font-size: medium;
 }
