@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ModalWindow from '../components/ModalWindow'
 import TableForCalendar from '../components/TableForCalendar'
+import Image from 'next/image'
 
 function Calendar() {
     const
@@ -17,8 +18,8 @@ function Calendar() {
     }>
         <div>{date}</div>
         <button onClick={() => setShowModalWindow(true)} className='button-for-set-date' >
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Oxygen480-actions-view-calendar.svg/1200px-Oxygen480-actions-view-calendar.svg.png" />
-            </button>
+            <Image src="/ico.png" alt="calendar" width="50" height="50" />
+        </button>
         {showModalWindow && <ModalWindow
             setShowModalWindow={setShowModalWindow}
             date={date}
