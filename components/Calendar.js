@@ -17,9 +17,8 @@ function Calendar() {
     }>
         <div>{date}</div>
         <button onClick={() => setShowModalWindow(true)} className='button-for-set-date' >
-            Установить дату
-            {/* <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Oxygen480-actions-view-calendar.svg/1200px-Oxygen480-actions-view-calendar.svg.png" /> */}
-        </button>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Oxygen480-actions-view-calendar.svg/1200px-Oxygen480-actions-view-calendar.svg.png" />
+            </button>
         {showModalWindow && <ModalWindow
             setShowModalWindow={setShowModalWindow}
             date={date}
