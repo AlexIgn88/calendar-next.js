@@ -20,8 +20,8 @@ function ModalWindow({ setShowModalWindow, date, setDate, TableForCalendar }) {
             let
                 td = <td key={Date.now() + i}></td>,
                 nameOfMonth = arrayOfMonths[i + startShift];
-            td = <td key={Date.now() + i} data-month={'' + 0 + (i + startShift + 1)} >{nameOfMonth}</td>;
-            if (i + startShift + 1 == month) td = <td key={Date.now() + i} data-month={'' + 0 + (i + startShift + 1)} className="current" >{nameOfMonth}</td>;
+            td = <td key={Date.now() + i} data-month={String(i + startShift + 1).padStart(2, '0')} >{nameOfMonth}</td>;
+            if (i + startShift + 1 == month) td = <td key={Date.now() + i} data-month={String(i + startShift + 1).padStart(2, '0')} className="current" >{nameOfMonth}</td>;
             result.push(td);
         }
         return result;
@@ -59,7 +59,7 @@ function ModalWindow({ setShowModalWindow, date, setDate, TableForCalendar }) {
                 onChange={
                     evt => {
                         setinputYearValue(evt.target.value);
-                        setDate(date.split('.')[0] + '.' + date.split('.')[1] + '.' + inputYearValue);
+                        setDate(day + '.' + month + '.' + evt.target.value);
                     }}
             />
         </div>
