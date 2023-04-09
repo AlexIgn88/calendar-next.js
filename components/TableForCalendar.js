@@ -18,8 +18,9 @@ function TableForCalendar({ date, setDate }) {
             let
                 td = <td key={Date.now() + i}></td>,
                 date = monday + i;
-            if (date > 0 && date <= daysNumber) td = <td key={Date.now() + i} data-day={date} >{date}</td>;
-            if ((date > 0 && date <= daysNumber) && date == day) td = <td key={Date.now() + i} data-day={date} className="current" >{date}</td>;
+            if (date > 0 && date <= daysNumber) td = <td key={Date.now() + i} data-day={date} className={
+                date === +day ? 'current' : ''
+            }>{date}</td>;
             result.push(td);
         }
         return result;

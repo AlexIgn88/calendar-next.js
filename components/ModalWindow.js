@@ -20,8 +20,9 @@ function ModalWindow({ setShowModalWindow, date, setDate, TableForCalendar }) {
             let
                 td = <td key={Date.now() + i}></td>,
                 nameOfMonth = arrayOfMonths[i + startShift];
-            td = <td key={Date.now() + i} data-month={String(i + startShift + 1).padStart(2, '0')} >{nameOfMonth}</td>;
-            if (i + startShift + 1 == month) td = <td key={Date.now() + i} data-month={String(i + startShift + 1).padStart(2, '0')} className="current" >{nameOfMonth}</td>;
+            td = <td key={Date.now() + i} data-month={String(i + startShift + 1).padStart(2, '0')} className={
+                i + startShift + 1 === +month ? 'current' : ''
+            }>{nameOfMonth}</td>;
             result.push(td);
         }
         return result;
